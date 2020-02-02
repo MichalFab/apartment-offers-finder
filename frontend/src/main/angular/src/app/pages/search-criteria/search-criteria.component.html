@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div>
+    <div  class="card bg-light">
+      <div class="card-header bg-warning">
+        <i class="fa fa-cookie-bite"></i>
+        Powiedz nam czego szukasz
+      </div>
+      <div class="card-body">
+        <form #reportForm="ngForm">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="twoj@email.com" minlength="1" [(ngModel)]="searchCriteria.email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="city">W jakim mieście szukasz mieszkania</label>
+            <select class="form-control" id="city" [(ngModel)]="searchCriteria.city" name="city">
+              <option [value]="city" *ngFor="let city of cities">{{city}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="minRoomNumber">Minimalna ilość pokoi</label>
+            <select class="form-control" id="minRoomNumber" [(ngModel)]="searchCriteria.minRoom" name="minRoom">
+              <option [value]="minRoomNumber" *ngFor="let minRoomNumber of minRooms">{{minRoomNumber}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="minRoomNumber">Maksymalna ilość pokoi</label>
+            <select class="form-control" id="maxRoomNumber" [(ngModel)]="searchCriteria.maxRoom" name="maxRoom">
+              <option [value]="maxRoomNumber" *ngFor="let maxRoomNumber of maxRooms">{{maxRoomNumber}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Minimalna cena</label>
+            <input type="text" class="form-control" id="minPrice" placeholder="minimalna cena w PLN" [(ngModel)]="searchCriteria.minPrice" minlength="1" pattern="^[0-9()\-+\s]+$" name="minPrice" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Maksymalna cena</label>
+            <input type="text" class="form-control" id="maxPrice" placeholder="maksymalna cena w PLN" [(ngModel)]="searchCriteria.maxPrice" minlength="1" pattern="^[0-9()\-+\s]+$" name="maxPrice" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Minimalna cena za M2</label>
+            <input type="text" class="form-control" id="minPriceM2" placeholder="minimalna cena za M2 w PLN" [(ngModel)]="searchCriteria.minM2price" minlength="1" pattern="^[0-9()\-+\s]+$" name="minPriceM2" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Maksymalna cena za M2</label>
+            <input type="text" class="form-control" id="maxPriceM2" placeholder="maksymalna cena za M2 w PLN" [(ngModel)]="searchCriteria.maxM2price" minlength="1" pattern="^[0-9()\-+\s]+$" name="maxPriceM2" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Minimalna powieżchnia</label>
+            <input type="text" class="form-control" id="minArea" placeholder="Minimalna powieżchnia w M2" [(ngModel)]="searchCriteria.minArea" minlength="1" pattern="^[0-9()\-+\s]+$" name="minArea" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Maksymalna powieżchnia</label>
+            <input type="text" class="form-control" id="maxArea" placeholder="Maksymalna powieżchnia w M2" [(ngModel)]="searchCriteria.maxArea" minlength="1" pattern="[0-9()\-+\s]+" name="maxArea" required>
+          </div>
+          <div class="form-group">
+          <label for="exampleFormControlInput1">Mininalny rok budowy</label>
+          <input type="text" class="form-control" id="minYear" placeholder="Minimalny rok budowy" [(ngModel)]="searchCriteria.minYear" pattern="^[12][0-9]{3}$" name="minYear">
+        </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" [(ngModel)]="searchCriteria.onlyPrivate" name="onlyPrivate"> Tylko oferty prywatne
+            </label>
+          </div>
+
+          <div class="text-center">
+            <button class="btn btn-warning"
+                    (click)="createNewReport()"
+                    [disabled]="!reportForm.form.valid">
+              <span class="ml-1">Generuj Raport</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

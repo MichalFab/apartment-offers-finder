@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div>
+    <div *ngIf="loading" class="loading">
+      <div class="loader ">
+        <span>Szukam ofert...</span>
+      </div>
+    </div>
+    <div *ngIf="!loading">
+      <button type="button" class="btn btn-primary" (click)="sortPrice()">Od najtańszych</button>
+      <button type="button" class="btn btn-primary" (click)="sortM2Price()">Najniższa cena za M2</button>
+      <button type="button" class="btn btn-primary" (click)="filterPrivate()">Tylko prywatne</button>
+      <button type="button" class="btn btn-primary" (click)="filterPriceChanged()">Z obniżonymi ostatnio cenami</button>
+
+      <div *ngFor="let offer of offers" class="card bg-light">
+        <div class="card-header bg-warning">
+          <b class="lead font-weight-bold">{{offer.title}}</b>
+          <!--        <p class="text-right">{{offer.createDate.toDateString()}}</p>-->
+        </div>
+        <div class="card-body">
+          <div class="row wow fadeIn">
+
+            <!--Grid column-->
+            <div class="col-md-5 mb-4">
+
+              <img src="{{offer.imageUrl}}" class="img-fluid"
+                   alt="">
+
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-7 mb-4">
+
+              <!--Content-->
+              <div class="p-4">
+
+                <div class="mb-3">
+                  <span *ngIf="offer.roomNumber" class="badge purple mr-1">Pokoje: {{offer.roomNumber}}</span>
+                  <span *ngIf="offer.area" class="badge purple mr-1">Powierzchnia: {{offer.area}}</span>
+                  <span *ngIf="offer.floor" class="badge purple mr-1">Piętro: {{offer.floor}}</span>
+                  <span *ngIf="offer.rentPayments" class="badge purple mr-1">Czynsz: {{offer.rentPayments}}</span>
+                  <span *ngIf="offer.year" class="badge purple mr-1">Rok budowy: {{offer.year}}</span>
+                  <span *ngIf="offer.isPrivate" class="badge purple mr-1">Sprzedaż prywatna: {{offer.isPrivate}}</span>
+                  <span *ngIf="offer.district" class="badge purple mr-1">Dzielnica: {{offer.district}}</span>
+                </div>
+                <div *ngIf="offer.isPriceDown" class="alert alert-success" role="alert">
+                  To mieszkanie staniało w ostatnim czasie!
+                </div>
+                <p class="lead">
+                  <span>Cena: <b>{{offer.price}}</b> zł, {{offer.M2price}} zł/M2</span>
+                </p>
+
+                <p class="lead font-weight-bold">Opis</p>
+                <div [class.overflow]="isExpand" innerHTML="{{ offer.textAbout}}" (click)="isExpandToggle()"></div>
+
+                <a href="{{offer.url}}" class="btn btn-primary btn-md my-0 p" role="button" target="_blank">Przejdź do
+                  portalu z ogłoszeniem<i class="fas fa fa-home ml-1"></i></a>
+
+              </div>
+              <!--Content-->
+
+            </div>
+            <!--Grid column-->
+
+          </div>
+          <!--Grid row-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

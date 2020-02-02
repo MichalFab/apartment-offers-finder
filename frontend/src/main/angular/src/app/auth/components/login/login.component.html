@@ -1,0 +1,46 @@
+<div class="mt-5">
+  <section>
+    <h2 class="h1 py-5 font-weight-bold text-center">Logowanie</h2>
+    <div class="d-flex justify-content-center">
+    <div class="card login-form text-white bg-info">
+      <div class="card-header">
+        <h5 class="text-center">Zaloguj się</h5>
+      </div>
+      <div class="card-body">
+        <form #loginForm="ngForm">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input id="username" class="form-control" type="text"
+            placeholder="Login" name="username" required
+            [(ngModel)]="credentials.username" #username="ngModel">
+            <div [hidden]="username.valid || username.pristine"
+             class="text-danger">
+             Username is required
+           </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" class="form-control" type="password"
+            placeholder="Hasło" name="password" required
+            [(ngModel)]="credentials.password" #password="ngModel">
+            <div [hidden]="password.valid || password.pristine"
+             class="text-danger">
+             Password is required
+           </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-warning"
+            (click)="login()"
+            [disabled]="!loginForm.form.valid">
+              <span class="ml-1">Zaloguj</span>
+            </button>
+            <p>Jesteś tu nowy?
+              <a href="/register" style="color: white">Załóż konto</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </section>
+</div>
